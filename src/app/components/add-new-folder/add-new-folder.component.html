@@ -1,0 +1,7 @@
+<span class="add-new-folder-container">
+  <input type="text" #folderInput />{{ folderInput.focus() }}
+  <span class="action-icons">
+    <span (click)="addNewFolder(folderInput.value)"><img src="../../assets/tick.jpg" width="16" /></span>
+    <span (click)="cancel()">x</span>
+  </span>
+</span>

@@ -1,0 +1,34 @@
+<div class="root-container">
+  <header> Folder Structure Maker</header>
+  <div class="folder-maker-container">
+    <button (click)="addNewRootFolder()">Add folder to root</button>
+   
+    <ul class="root-folders">
+      <li *ngFor="let rootFolder of rootFolders" class="folder">
+        <span class="root-folder">
+          {{rootFolder.name}}
+          <span class="action-icons">
+            <span (click)="rootFolder.addNewChildActions(rootFolder)"> + </span>
+            <span (click)="deleteRootFolder(rootFolder)"><img src="../assets/delete.png" width="16" /></span>
+          </span>
+        </span>
+        <span class="add-new-child">
+          <span *ngIf="rootFolder.enableAddNewActions" class="add-folder-or-file">
+            <input type="button" value="File" (click)="rootFolder.addNewChild(rootFolder,'file')" />
+            <input type="button" value="Folder" (click)="rootFolder.addNewChild(rootFolder,'folder')" />
+          </span>
+
+          <app-add-new-folder [id]="rootFolder.children?.length" (newFolderAdded)=newFolderAdded($event,rootFolder) *ngIf="rootFolder.enableAddNewChildFolder">
+          </app-add-new-folder>
+          <app-add-new-file [id]="rootFolder.children?.length" (newFileAdded)=rootFolder.newFileAdded($event,rootFolder) *ngIf="rootFolder.enableAddNewChildFile">
+          </app-add-new-file>
+        </span>
+        <app-child-node [(childNodes)]="rootFolder.children" ></app-child-node>
+      </li>
+    </ul>
+
+    <app-add-new-folder [id]="rootFolders?.length" (newFolderAdded)=newFolderAdded($event) *ngIf="enableAddNewRootFolder"></app-add-new-folder>
+
+  </div>
+
+</div>

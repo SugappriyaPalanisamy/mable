@@ -1,0 +1,28 @@
+<ul class="root-folders" *ngFor="let childFolder of childNodes">
+  <li class="child-folder" *ngIf="childFolder.type ==='folder'">
+    <span class="root-folder">
+      {{childFolder.name}}
+      <span class="action-icons">
+        <span (click)="childFolder.addNewChildActions(childFolder)"> + </span>
+        <span (click)="deleteFolder(childFolder)"><img src="../assets/delete.png" width="16" /></span>
+      </span>
+    </span>
+    <span class="add-new-child">
+      <span *ngIf="childFolder.enableAddNewActions" class="add-folder-or-file">
+        <input type="button" value="File" (click)="childFolder.addNewChild(childFolder,'file')" />
+        <input type="button" value="Folder" (click)="childFolder.addNewChild(childFolder,'folder')" />
+      </span>
+
+      <app-add-new-folder [id]="childFolder.children?.length" (newFolderAdded)=newChildFolder($event,childFolder) *ngIf="childFolder.enableAddNewChildFolder">
+      </app-add-new-folder>
+      <app-add-new-file [id]="childFolder.children?.length" (newFileAdded)=childFolder.newFileAdded($event,childFolder) *ngIf="childFolder.enableAddNewChildFile">
+      </app-add-new-file>
+    </span>
+    <app-child-node [(childNodes)] ="childFolder.children"></app-child-node>
+</li>
+  <li class= "file" *ngIf="childFolder.type ==='file'">
+    <span>
+      {{childFolder.name}}
+    </span>
+  </li>
+</ul>

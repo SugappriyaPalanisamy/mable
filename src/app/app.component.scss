@@ -1,0 +1,126 @@
+$theme: #000;
+$text: #fff;
+
+.root-container {
+  border: 1px solid $theme;
+  width: 800px;
+  margin: 0 auto;
+  font-size: 1rem;
+
+  header {
+    height: 70px;
+    background: $theme;
+    border: 1px solid $theme;
+    justify-content: center;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    color: $text;
+  }
+
+  .folder-maker-container {
+    margin: 1rem;
+
+    button {
+      background: $theme;
+      color: $text;
+      border-radius: 5px;
+      border: none;
+      padding: 0.5rem 1rem;
+    }
+
+    .root-folders {
+      list-style: none;
+      padding: 0;
+      font-size: 0.85rem;
+
+      li {
+        display: flex;
+        width: 250px;
+        flex-direction: column;
+
+        &.folder {
+          .root-folder {
+            border: 1px solid transparent;
+            height: 30px;
+            padding: 0 0.5rem 0 0.5rem;
+            align-items: center;
+            padding-left: 1.5em;
+            width: 100%;
+            display: inline-flex;
+
+            &:before {
+              content: " ";
+              display: inline-block;
+              width: 20px;
+              height: 20px;
+              background: url('../assets/folder-open-regular.svg');
+              margin-right: 0.5rem;
+            }
+
+            .action-icons {
+              display: none;
+              padding-left: 2rem;
+              margin-left: auto;
+
+              span {
+                width: 20px;
+                height: 20px;
+                border: 1px solid #000;
+                border-radius: 5px;
+                margin-left: 5px;
+                color: #000;
+                font-weight: bold;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+              }
+            }
+
+            &:hover, &.focus {
+              border-color: #000;
+
+              .action-icons {
+                display: flex;
+              }
+            }
+          }
+
+          .add-new-child {
+            margin-top: 1rem;
+            padding-left: 2rem;
+          }
+        }
+
+        &.file {
+          span {
+            height: 30px;
+            padding: 0 0.5rem 0 0.5rem;
+            align-items: center;
+            padding-left: 1.5em;
+            width: 100%;
+            display: inline-flex;
+
+            &:before {
+              content: " ";
+              display: inline-block;
+              width: 20px;
+              height: 20px;
+              background: url('../assets/file-regular.svg');
+              background-repeat: no-repeat;
+              margin-right: 0.5rem;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  ul {
+    ul {
+      padding-left: 1rem !important;
+    }
+  }
+}
